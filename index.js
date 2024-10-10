@@ -1,10 +1,14 @@
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+dotenv.config();
 import { userRouter } from './routes/user.js';
 import { bookRouter } from './routes/book.js';
 import { cartRouter } from './routes/cart.js';
 const app = express();
+
+const PORT = 5000 || process.env.PORT
 
 // Middleware
 app.use(express.json());
@@ -25,6 +29,6 @@ mongoose.connect("mongodb+srv://rounak:root@bookstore.ofo37.mongodb.net/", {
     console.error("MongoDB connection error:", error);
 });
 
-app.listen(5000, () => {
-    console.log("Server listening on port 5000");
+app.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`);
 });
